@@ -1,0 +1,186 @@
+body {
+    background: radial-gradient(circle at 10% 20%, rgb(215, 223, 252) 0%, rgb(255, 255, 255) 0%, rgb(215, 223, 252) 84%);
+}
+
+* {
+    margin: 0 auto;
+    font-family: 'Mooli', sans-serif;
+    padding: 10px 10px 10px 10px;
+}
+
+.main-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 5px 30px 0 rgba(0, 0, 0, 0.2);
+    background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/101/389/original/cielo.jpg?1697820174);
+    background-size: cover;
+    position: relative;
+}
+
+#find-city {
+    border-radius: 10px;
+    background-color: whitesmoke;
+    width: 250px;
+    border: solid 1px gray;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#btn-search {
+    border-radius: 10px;
+    background-color: gainsboro;
+    border: solid 1px gray;
+    margin-left: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.currentDate {
+    font-size: 22px;
+}
+
+#actual-city {
+    font-size: 35px;
+    font-weight: 600;
+}
+
+#degrees {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+#celsius-d {
+    font-size: 22px;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+}
+
+#fahrenheit-d {
+    font-size: 22px;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+}
+
+#celsius-d:hover {
+    color: blueviolet;
+}
+
+#fahrenheit-d:hover {
+    color: blueviolet;
+}
+
+
+
+.sun {
+    font-size: 50px;
+}
+
+.cloud {
+    font-size: 50px;
+    color: gainsboro;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+/*.find {
+    display: flex;
+    flex-direction: row;
+}*/
+
+.container2 h2 {
+    font-weight: bold;
+}
+
+.Monday {
+    display: inline-block;
+    padding: 15px 15px 15px;
+    padding-left: 3px;
+
+}
+
+.mon {
+    color: yellow;
+    font-size: 50px;
+}
+
+.Tuesday {
+    display: inline-block;
+    padding: 15px 15px 15px 15px;
+}
+
+.tue {
+    color: lightblue;
+    font-size: 50px;
+}
+
+.Wednesday {
+    display: inline-block;
+    padding: 15px 15px 15px 15px;
+}
+
+.wed {
+    color: lightgray;
+    font-size: 50px;
+}
+
+.Thursday {
+    display: inline-block;
+    padding: 15px 15px 15px 15px;
+}
+
+.thu {
+    color: slategray;
+    font-size: 50px;
+}
+
+.Friday {
+    display: inline-block;
+    padding: 15px 15px 15px 15px;
+}
+
+.fri {
+    color: darkslateblue;
+    font-size: 50px;
+}
+
+.Saturday {
+    display: inline-block;
+    padding: 15px 15px 15px 15px;
+}
+
+.sat {
+    color: darkblue;
+    font-size: 50px;
+}
+
+.Sunday {
+    display: inline-block;
+    padding: 15px 15px 15px 15px;
+}
+
+.sun {
+    color: rgb(53, 52, 67);
+    font-size: 50px;
+}
+
+footer {
+    text-align: center;
+    font-size: 13px;
+}
+
+#linkedin {
+    color: blueviolet;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#linkedin:hover {
+    color: rgb(210, 115, 210);
+    text-decoration: underline;
+}
