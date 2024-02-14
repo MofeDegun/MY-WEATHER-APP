@@ -1,268 +1,105 @@
-/*let weather = {
-  "paris": {
-    temp: 19.7,
-    humidity: 80
-  },
-  "tokyo": {
-    temp: 17.3,
-    humidity: 50
-  },
-  "lisbon": {
-    temp: 30.2,
-    humidity: 20
-  },
-  "san francisco": {
-    temp: 20.9,
-    humidity: 100
-  },
-  "oslo": {
-    temp: -5,
-    humidity: 20
+function refreshWeather(response) {
+  let temperatureElement = document.querySelector("#temperature");
+
+  let temperature = response.data.temperature.current;
+  cityElement = document.querySelector("#city");
+  descriptionElement = document.querySelector("#description");
+  humidityElement = document.querySelector("#humidity");
+  windSpeedElement = document.querySelector("#wind-speed");
+  timeElement = document.querySelector("#time");
+  let date = new Date(response.data.time * 1000);
+  let iconElement = document.querySelector("#icon");
+
+  cityElement.innerHTML = response.data.city;
+  timeElement.innerHTML = formatDate(date);
+  descriptionElement.innerHTML = response.data.condition.description;
+  temperatureElement.innerHTML = Math.round(temperature);
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+  windSpeedElement.innerHTML = `${response.data.wind.speed} km/h`;
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon"/>`;
+  getForecast(response.data.city);
+}
+
+function formatDate(date) {
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
   }
-};
 
-let city = prompt("Enter a city");
+  return `${day} ${hours}:${minutes}`;
+}
 
-// Converti l'input dell'utente in minuscolo
-city = city.toLowerCase();
-
-// Controlla se la città esiste nell'oggetto weather
-if (weather.hasOwnProperty(city)) {
-    // Se la città esiste, mostra un avviso con le informazioni meteo
-    let temp = Math.round(weather[city].temp);
-    let humidity = Math.round(weather[city].humidity);
-    alert(`It is currently ${temp}°C in ${city} with a humidity of ${humidity}%`);
-} else {
-    // Se la città non esiste, mostra un avviso con un link a Google Weather
-    alert(`Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`);
-}; */
-
-/*//Data e ora
-
-let today = new Date();
-
-let current = document.querySelector("#current-date");
-
-let date = today.getDate();
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
-let day = days[today.getDay()];
-
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
-let month = months[today.getMonth()];
-
-const timeNow = today.toLocaleString();
-
-current.innerHTML = `${day}, ${timeNow}`;
-
-//Scrivo città nel form e cambia in html
-
-document
-  .getElementById("search-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    let cityInput = document.getElementById("find-city");
-    let cityValue = cityInput.value;
-
-    let cityy = document.getElementById("actual-city");
-    cityy.innerHTML = `${cityValue}`;
-
-    // Imposta il valore dell'input su una stringa vuota
-    cityInput.value = "";
-  })
-
-//Temperature C°-F°
-
-// Seleziona gli elementi
-let degrees = document.getElementById("degrees");
-let celsius = document.getElementById("celsius-d");
-let fahrenheit = document.getElementById("fahrenheit-d");
-
-// Aggiungi un ascoltatore di eventi a celsius
-celsius.addEventListener("click", function (event) {
-  event.preventDefault();
-  // Cambia la temperatura in gradi Celsius
-  degrees.innerHTML = "19";
-});
-
-// Aggiungi un ascoltatore di eventi a fahrenheit
-fahrenheit.addEventListener("click", function (event) {
-  event.preventDefault();
-  // Cambia la temperatura in gradi Fahrenheit
-  degrees.innerHTML = "66";
-}); 
-
-
-// Selezionare il form di ricerca e l'input di testo
-let searchForm = document.getElementById("search-form");
-let findCity = document.getElementById("find-city");
-
-// Creare una variabile city vuota
-let city = "";
-
-// Aggiungere un evento submit al form di ricerca
-searchForm.addEventListener("submit", function (event) {
-  console.log("Form submitted");
-  // Prevenire il comportamento di default del form
-  event.preventDefault();
-  // Assegnare alla variabile city il valore dell'input di testo
-  city = findCity.value;
-  // Mostrare il valore della variabile city nella console
-  console.log(city);
-  // Chiamare la funzione searchCity per cercare la città
-  searchCity(city);
-});
-
-// Creare una funzione searchCity che accetta il nome della città come parametro
 function searchCity(city) {
-  // Creare la chiave API e l'URL dell'API di SheCodes
-  let apiKey = "3bfodta744aa70431c723fa27b7a2972";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
-  // Usare axios per fare una richiesta all'API e passare la risposta alla funzione displayCity
- axios.get(apiUrl).then(displayCity).catch(function(error) {
-  console.log(error);
-});
+  let apiKey = "382o0ac2c14btd9435906fb13df381eb";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(refreshWeather);
 }
 
-// Creare una funzione displayCity che accetta la risposta dell'API come parametro
-function displayCity(response) {
-  // Stampa i dati della risposta nella console
-  console.log(response.data);
-
-  // Estrarre i dati che ci interessano dalla risposta
-  let cityName = response.data.city;
-  let cityTemp = Math.round(response.data.temperature.current);
-
-  // Selezionare gli elementi HTML dove vogliamo mostrare il nome della città e la temperatura
-  let actualCity = document.getElementById("actual-city");
-  let degrees = document.getElementById("degrees");
-
-  // Assegnare il valore dei dati agli elementi HTML
-  actualCity.innerHTML = cityName;
-  degrees.innerHTML = cityTemp;
-}
-
-*/
-
-/*//Data e ora
-
-let today = new Date();
-
-let current = document.querySelector("#current-date");
-
-let date = today.getDate();
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
-let day = days[today.getDay()];
-
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
-let month = months[today.getMonth()];
-
-const timeNow = today.toLocaleString();
-
-current.innerHTML = `${day}, ${timeNow}`;
-*/
-
-//Scrivo città nel form e cambia in html
-
-// Selezionare il form di ricerca e l'input di testo
-let searchForm = document.getElementById("search-form");
-let findCity = document.getElementById("find-city");
-
-// Creare una variabile city vuota
-let city = "";
-
-// Aggiungere un evento submit al form di ricerca
-searchForm.addEventListener("submit", function (event) {
-  console.log("Form submitted");
-  // Prevenire il comportamento di default del form
+function handleSearchSubmit(event) {
   event.preventDefault();
-  // Assegnare alla variabile city il valore dell'input di testo
-  city = findCity.value;
-  // Mostrare il valore della variabile city nella console
-  console.log(city);
-  // Cambiare il contenuto di actual-city
-  let cityy = document.getElementById("actual-city");
-  cityy.innerHTML = `${city}`;
-  // Imposta il valore dell'input su una stringa vuota
-  findCity.value = "";
-  // Chiamare la funzione searchCity per cercare la città
-  searchCity(city);
-});
+  let SearchInput = document.querySelector("#search-form-input");
 
-// Creare una funzione searchCity che accetta il nome della città come parametro
-function searchCity(city) {
-  // Creare la chiave API e l'URL dell'API di SheCodes
-  let apiKey = "3bfodta744aa70431c723fa27b7a2972";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
-  // Usare axios per fare una richiesta all'API e passare la risposta alla funzione displayCity
-  axios
-    .get(apiUrl)
-    .then(displayCity)
-    .catch(function (error) {
-      console.log(error);
-    });
+  searchCity(SearchInput.value);
 }
 
-// Creare una funzione displayCity che accetta la risposta dell'API come parametro
-function displayCity(response) {
-  // Stampa i dati della risposta nella console
-  console.log(response.data);
-
-  // Estrarre i dati che ci interessano dalla risposta
-  let cityName = response.data.city;
-  let cityTemp;
-  if (response.data.temperature && response.data.temperature.current) {
-    cityTemp = Math.round(response.data.temperature.current);
-  } else {
-    cityTemp = "Temperature data not available";
-  }
-  // Selezionare gli elementi HTML dove vogliamo mostrare il nome della città e la temperatura
-  let degrees = document.getElementById("degrees");
-
-  // Assegnare il valore dei dati agli elementi HTML
-  degrees.innerHTML = cityTemp;
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[date.getDay()];
 }
+
+function getForecast(city) {
+  let apiKey = "382o0ac2c14btd9435906fb13df381eb";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHtml = "";
+
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        ` <div class="row">
+          <div class="col-2">
+            <div class="weather-forecast-date">${formatDay(day.time)}</div>
+            <div >
+            <img src="${
+              day.condition.icon_url
+            }" class="weather-forecast-icon" />
+            </div>
+            <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max">${Math.round(
+                day.temperature.maximum
+              )}° </span>
+              <span class="weather-forecast-temperature-min">${Math.round(
+                day.temperature.minimum
+              )}°</span>
+            </div>
+          </div>
+        </div>`;
+    }
+  });
+  forecastElement.innerHTML = forecastHtml;
+}
+
+let SearchFormElement = document.querySelector("#search-form");
+SearchFormElement.addEventListener("submit", handleSearchSubmit);
+
+searchCity("Vienna");
