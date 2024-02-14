@@ -1,186 +1,126 @@
 body {
-    background: radial-gradient(circle at 10% 20%, rgb(215, 223, 252) 0%, rgb(255, 255, 255) 0%, rgb(215, 223, 252) 84%);
+  background-color: #fecea8;
+  font-family: "Roboto", sans-serif;
 }
 
-* {
-    margin: 0 auto;
-    font-family: 'Mooli', sans-serif;
-    padding: 10px 10px 10px 10px;
+a {
+  color: #e84a5f;
 }
 
-.main-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 30px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 5px 30px 0 rgba(0, 0, 0, 0.2);
-    background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/101/389/original/cielo.jpg?1697820174);
-    background-size: cover;
-    position: relative;
+.weather-app {
+  background: white;
+  max-width: 600px;
+  margin: 45px auto;
+  box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+  border-radius: 16px;
+  padding: 30px;
 }
 
-#find-city {
-    border-radius: 10px;
-    background-color: whitesmoke;
-    width: 250px;
-    border: solid 1px gray;
-    margin-top: 10px;
-    margin-left: 10px;
+header {
+  border-bottom: 1px solid #f9f7fe;
+  padding: 0 0 30px 6px;
+}
+.search-form {
+  display: flex;
+  align-items: center;
+}
+.search-form-input {
+  background-color: #f9f7fe;
+  border: none;
+  border-radius: 6px;
+  width: 80%;
+  font-size: 16px;
+  padding: 15px 20px;
 }
 
-#btn-search {
-    border-radius: 10px;
-    background-color: gainsboro;
-    border: solid 1px gray;
-    margin-left: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+.search-form-button {
+  background: #e84a5f;
+  padding: 15px 30px;
+  border: none;
+  font-size: 16px;
+  margin-left: 5px;
+  border-radius: 6px;
+  color: white;
 }
 
-.currentDate {
-    font-size: 22px;
+.weather-app-data {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
-#actual-city {
-    font-size: 35px;
-    font-weight: 600;
+main {
+  padding: 30px 0;
 }
 
-#degrees {
-    font-size: 25px;
-    font-weight: 600;
+.weather-app-city {
+  margin: 0;
+  font-size: 38px;
+  line-height: 48px;
 }
 
-#celsius-d {
-    font-size: 22px;
-    font-weight: 600;
-    text-decoration: none;
-    color: black;
+.weather-app-details {
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(66, 33, 58, 0.4);
+  font-weight: 500;
 }
 
-#fahrenheit-d {
-    font-size: 22px;
-    font-weight: 600;
-    text-decoration: none;
-    color: black;
+.weather-app-details strong {
+  color: #e84a5f;
+  opacity: 75%;
 }
 
-#celsius-d:hover {
-    color: blueviolet;
+.weather-app-temperature-container {
+  display: flex;
 }
 
-#fahrenheit-d:hover {
-    color: blueviolet;
+.weather-app-icon {
+  width: 66px;
+  height: 66px;
 }
 
+.weather-app-temperature {
+  font-size: 66px;
+  font-weight: bold;
 
-
-.sun {
-    font-size: 50px;
+  line-height: 66px;
 }
 
-.cloud {
-    font-size: 50px;
-    color: gainsboro;
+.weather-app-unit {
+  margin-top: 6px;
+  font-size: 20px;
 }
 
-h1 {
-    font-weight: bold;
+.weather-forecast {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 20px;
+}
+.weather-forecast-date {
+  font-size: 16px;
+  opacity: 0.5;
+}
+.weather-forecast-icon {
+  width: 66px;
+  height: 66px;
+  display: block;
+  margin: 0 auto;
 }
 
-/*.find {
-    display: flex;
-    flex-direction: row;
-}*/
-
-.container2 h2 {
-    font-weight: bold;
+.weather-forecast-temperature-min {
+  opacity: 0.5;
 }
-
-.Monday {
-    display: inline-block;
-    padding: 15px 15px 15px;
-    padding-left: 3px;
-
+.weather-forecast-temperatures {
+  font-size: 13px;
 }
-
-.mon {
-    color: yellow;
-    font-size: 50px;
-}
-
-.Tuesday {
-    display: inline-block;
-    padding: 15px 15px 15px 15px;
-}
-
-.tue {
-    color: lightblue;
-    font-size: 50px;
-}
-
-.Wednesday {
-    display: inline-block;
-    padding: 15px 15px 15px 15px;
-}
-
-.wed {
-    color: lightgray;
-    font-size: 50px;
-}
-
-.Thursday {
-    display: inline-block;
-    padding: 15px 15px 15px 15px;
-}
-
-.thu {
-    color: slategray;
-    font-size: 50px;
-}
-
-.Friday {
-    display: inline-block;
-    padding: 15px 15px 15px 15px;
-}
-
-.fri {
-    color: darkslateblue;
-    font-size: 50px;
-}
-
-.Saturday {
-    display: inline-block;
-    padding: 15px 15px 15px 15px;
-}
-
-.sat {
-    color: darkblue;
-    font-size: 50px;
-}
-
-.Sunday {
-    display: inline-block;
-    padding: 15px 15px 15px 15px;
-}
-
-.sun {
-    color: rgb(53, 52, 67);
-    font-size: 50px;
-}
-
 footer {
-    text-align: center;
-    font-size: 13px;
-}
-
-#linkedin {
-    color: blueviolet;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-#linkedin:hover {
-    color: rgb(210, 115, 210);
-    text-decoration: underline;
+  border-top: 1px solid #f9f7fe;
+  padding: 30px 0 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 500;
 }
